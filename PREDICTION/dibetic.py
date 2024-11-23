@@ -21,7 +21,30 @@ def predict_diabetes(input_data):
 
 def main():
     st.title('Diabetes Prediction')
-    st.markdown("<h3 style='text-align: center; color: #2E86C1;'>Enter your health information to predict diabetes risk</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #000000;'>Enter your health information to predict diabetes risk</h3>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <style>
+    .main {
+        color: #000000;
+    }
+    .stSelectbox label, .stNumberInput label {
+        color: #000000 !important;
+    }
+    .stButton button {
+        color: #000000 !important;
+    }
+    .stSuccess {
+        color: #000000 !important;
+    }
+    .sidebar .sidebar-content {
+        color: #000000;
+    }
+    .disclaimer {
+        color: #000000;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
     # Create two columns for input fields
     col1, col2 = st.columns(2)
@@ -59,21 +82,22 @@ def main():
         st.success('Analysis complete!')
         time.sleep(0.5)
         
-        st.markdown("<div class='result-box'>", unsafe_allow_html=True)
-        st.subheader('Prediction Result:')
+        st.markdown("<div class='result-box' style='background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;'>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color: #000000;'>Prediction Result:</h3>", unsafe_allow_html=True)
         if prediction == 1:
-            st.markdown("<p style='color: #FF5733; font-size: 20px;'>The model predicts that you may have a higher risk of diabetes.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='color: #000000; font-size: 20px;'>The model predicts that you may have a higher risk of diabetes.</p>", unsafe_allow_html=True)
         else:
-            st.markdown("<p style='color: #27AE60; font-size: 20px;'>The model predicts that you may have a lower risk of diabetes.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='color: #000000; font-size: 20px;'>The model predicts that you may have a lower risk of diabetes.</p>", unsafe_allow_html=True)
         
         # Animated progress bar for probability
-        st.write(f'Probability of diabetes risk:')
+        st.markdown("<p style='color: #000000;'>Probability of diabetes risk:</p>", unsafe_allow_html=True)
         progress_bar = st.progress(0)
         for i in range(100):
             time.sleep(0.01)
             progress_bar.progress(min(i/100, probability))
-        st.write(f'{probability:.2%}')
+        st.markdown(f"<p style='color: #000000;'>{probability:.2%}</p>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
+
