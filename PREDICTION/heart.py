@@ -24,12 +24,21 @@ def predict_heart_attack_risk(input_data):
 
 def main():
     st.title('Heart Attack Risk Prediction')
-    st.markdown("<h3 style='text-align: center; color: #FFFFFF;'>Enter your health information to predict heart attack risk</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #000000;'>Enter your health information to predict heart attack risk</h3>", unsafe_allow_html=True)
     
     st.markdown("""
     <style>
     .main {
         margin-bottom: 200px;
+    }
+    .stSelectbox label, .stNumberInput label {
+        color: #000000 !important;
+    }
+    .stButton button {
+        color: #000000 !important;
+    }
+    .stSuccess {
+        color: #000000 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -68,19 +77,19 @@ def main():
         time.sleep(0.5)
         
         st.markdown("<div class='result-box' style='background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;'>", unsafe_allow_html=True)
-        st.subheader('Prediction Result:')
+        st.markdown("<h3 style='color: #000000;'>Prediction Result:</h3>", unsafe_allow_html=True)
         if prediction == 1:
-            st.markdown("<p style='color: #E74C3C; font-size: 20px;'>The model predicts that you may have a higher risk of heart disease.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='color: #000000; font-size: 20px;'>The model predicts that you may have a higher risk of heart disease.</p>", unsafe_allow_html=True)
         else:
-            st.markdown("<p style='color: #27AE60; font-size: 20px;'>The model predicts that you may have a lower risk of heart disease.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='color: #000000; font-size: 20px;'>The model predicts that you may have a lower risk of heart disease.</p>", unsafe_allow_html=True)
         
         # Animated progress bar for probability
-        st.write(f'Probability of heart disease risk:')
+        st.markdown("<p style='color: #000000;'>Probability of heart disease risk:</p>", unsafe_allow_html=True)
         progress_bar = st.progress(0)
         for i in range(100):
             time.sleep(0.01)
             progress_bar.progress(min(i/100, probability))
-        st.write(f'{probability:.2%}')
+        st.markdown(f"<p style='color: #000000;'>{probability:.2%}</p>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # Add footer with app information and disclaimer
@@ -88,3 +97,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
